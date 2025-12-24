@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Tic Tac Toe</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bungee&family=AR+One+Sans:wght@400;600&family=Tilt+Warp&display=swap">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css"
+    />
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/game.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script> 
+</head>
+<body>
+    <!-- Splash Screen -->
+    <section id="splash-screen" class="screen active">
+        <div class="splash-content">
+            <div class="game-title">
+                <div class="flex flex-row justify-center">
+                    <h1 class="text-white">T</h1>
+                    <h1 class="text-green-500">I</h1>
+                    <h1 class="text-white">C</h1>
+                </div>
+                <div class="flex flex-row justify-center">
+                    <h1 class="text-green-500">T</h1>
+                    <h1 class="text-white">A</h1>
+                    <h1 class="text-green-500">C</h1>
+                </div>
+                <div class="flex flex-row justify-center">
+                    <h1 class="text-white">T</h1>
+                    <h1 class="text-green-500">O</h1>
+                    <h1 class="text-white">E</h1>
+                </div>
+            </div>
+            <button class="btn-primary play-now-btn" aria-label="Play Now">
+                PLAY NOW
+            </button>
+        </div>
+    </section>
+
+    <!-- Main Menu -->
+    <section id="main-menu" class="screen">
+        <header class="screen-header">
+            <button class="btn-icon back-btn-splash" aria-label="Back">
+                <i class="ph ph-arrow-left"></i>
+            </button>
+        </header>
+        <main class="screen-content">
+            <div class="game-title">
+                <div class="flex flex-row justify-center">
+                    <h1 class="text-white">T</h1>
+                    <h1 class="text-green-500">I</h1>
+                    <h1 class="text-white">C</h1>
+                </div>
+                <div class="flex flex-row justify-center">
+                    <h1 class="text-green-500">T</h1>
+                    <h1 class="text-white">A</h1>
+                    <h1 class="text-green-500">C</h1>
+                </div>
+                <div class="flex flex-row justify-center">
+                    <h1 class="text-white">T</h1>
+                    <h1 class="text-green-500">O</h1>
+                    <h1 class="text-white">E</h1>
+                </div>
+            </div>
+            
+            <div class="menu-options">
+                <button class="menu-option" data-mode="ai">
+                    <div class="option-icon">
+                        <i class="ph ph-robot"></i>
+                    </div>
+                    <div class="option-content">
+                        <h3>Player Vs AI</h3>
+                        <p>Challenge the computer</p>
+                    </div>
+                    <i class="ph ph-arrow-right option-arrow"></i>
+                </button>
+                
+                <button class="menu-option" data-mode="pvp">
+                    <div class="option-icon">
+                        <i class="ph ph-users"></i>
+                    </div>
+                    <div class="option-content">
+                        <h3>Player Vs Player</h3>
+                        <p>Play with a friend</p>
+                    </div>
+                    <i class="ph ph-arrow-right option-arrow"></i>
+                </button>
+            </div> 
+        </main>
+    </section>
+
+    <!-- Difficulty Selection -->
+    <section id="difficulty-screen" class="screen">
+        <header class="screen-header">
+            <button class="btn-icon back-btn" aria-label="Back">
+                <i class="ph ph-arrow-left"></i>
+            </button>
+            <h2 class="screen-title" style="display: flex; justify-content: center; align-items: center;">Choose Difficulty</h2>
+        </header>
+        
+        <main class="screen-content">
+            <div class="difficulty-options">
+                <button class="difficulty-option" data-difficulty="easy">
+                    <div class="difficulty-header">
+                        <i class="ph ph-smiley"></i>
+                        <div class="difficulty-tags">
+                            <span class="tag easy">Easy</span>
+                        </div>
+                    </div>
+                </button>
+                
+                <button class="difficulty-option" data-difficulty="medium">
+                    <div class="difficulty-header">
+                        <i class="ph ph-face-mask"></i>
+                        <div class="difficulty-tags">
+                            <span class="tag medium">Medium</span>
+                        </div>
+                    </div>
+                </button>
+                
+                <button class="difficulty-option" data-difficulty="hard">
+                    <div class="difficulty-header">
+                        <i class="ph ph-smiley-angry"></i>
+                        <div class="difficulty-tags">
+                            <span class="tag hard">Hard</span>
+                        </div>
+                    </div>
+                </button>
+            </div>
+        </main>
+    </section>
+
+    <!-- Game Screen -->
+    <section id="game-screen" class="screen">
+        <header class="game-header">
+            <button class="btn-icon back-btn" aria-label="Back to Menu">
+                <i class="ph ph-arrow-left"></i>
+            </button>
+            
+            <div class="game-info">
+                <div class="game-mode-display" id="game-mode-display"></div>
+                <div class="current-player">
+                    <span class="player-label">Current Player:</span>
+                    <div class="player-marker" id="current-player-marker">X</div>
+                </div>
+                <div class="turn-status" id="turn-status">Your Turn</div>
+            </div>
+            
+        </header>
+        
+        <main class="game-content">
+            <div class="game-board-container">
+                <div class="game-board" id="game-board" role="grid" aria-label="Tic Tac Toe game board">
+                    <!-- 6×6 grid will be generated here -->
+                </div>
+            </div>
+            
+            <div class="game-controls">
+                <button class="btn-secondary" id="new-game-btn">
+                    <i class="ph ph-arrows-clockwise"></i>
+                    New Game
+                </button>
+                <div id="hint-btn" style="display: none;">
+                </div>
+            </div>
+            
+            <div class="game-result" id="game-result">
+                <!-- Game result messages will appear here -->
+            </div>
+        </main>
+        
+        <!-- Confetti overlay for wins -->
+        <div id="confetti-overlay"></div>
+        
+        <!-- AI Thinking Indicator -->
+        <div class="ai-thinking" id="ai-thinking" style="display: none;">
+            <div class="thinking-content">
+                <i class="ph ph-brain"></i>
+                <span>AI is thinking...</span>
+                <div class="thinking-dots">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="js/app.js" defer></script>
+    <script src="js/game.js" defer></script>
+    <script src="js/ai.js" defer></script>
+</body>
+</html>
