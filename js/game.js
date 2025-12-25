@@ -390,16 +390,6 @@ class TicTacToeGame {
             this.startGame(this.gameMode, this.difficulty);
         }, 300);
     }
-    
-    playSound(type) {
-        const audio = document.getElementById(`${type}-sound`);
-        if (audio) {
-            audio.currentTime = 0;
-            audio.play().catch(() => {
-                // Auto-play was prevented, ignore
-            });
-        }
-    }
 }
 
 // Add confetti animation styles
